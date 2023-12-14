@@ -2,9 +2,9 @@
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
-  name: databases.io.github.onecx.operator.db.postgresql
+  name: databases.onecx.github.io
 spec:
-  group: io.github.onecx.operator.db.postgresql
+  group: onecx.github.io
   names:
     kind: Database
     plural: databases

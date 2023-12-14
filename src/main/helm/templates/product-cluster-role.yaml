@@ -4,7 +4,7 @@ metadata:
   name: {{ .Release.Name }}-{{ .Values.app.name }}-cluster-role
 rules:
   - apiGroups:
-      - io.github.onecx.operator.db.postgresql
+      - onecx.github.io
     resources:
       - databases
       - databases/status
