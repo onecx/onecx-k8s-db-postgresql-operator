@@ -1,0 +1,19 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ .Release.Name }}-{{ .Values.app.name }}-cluster-role
+rules:
+  - apiGroups:
+      - io.github.onecx.operator.db.postgresql
+    resources:
+      - databases
+      - databases/status
+      - databases/finalizers
+    verbs:
+      - get
+      - list
+      - watch
+      - patch
+      - update
+      - create
+      - delete
