@@ -1,4 +1,4 @@
-package io.github.onecx.k8s.db.postgresql.operator;
+package org.tkit.onecx.k8s.db.postgresql.operator;
 
 import java.util.*;
 import java.util.stream.Collectors;

@@ -4,7 +4,7 @@ metadata:
   name: {{ .Release.Name }}-{{ .Values.app.name }}-cluster-role
 rules:
   - apiGroups:
-      - onecx.github.io
+      - onecx.tkit.org
     resources:
       - databases
       - databases/status

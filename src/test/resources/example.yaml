@@ -1,0 +1,12 @@
+apiVersion: onecx.tkit.org/v1
+kind: Database
+metadata:
+  name: test-db
+  namespace: dev
+spec:
+  host: "postgresql"
+  name: "test"
+  user: "test"
+  password-key: "password"
+  password-secrets: "test-db-config"
+  schema: "test"

@@ -1,4 +1,4 @@
-package io.github.onecx.k8s.db.postgresql.operator;
+package org.tkit.onecx.k8s.db.postgresql.operator;
 
 import io.smallrye.config.ConfigMapping;
 import io.smallrye.config.WithDefault;
