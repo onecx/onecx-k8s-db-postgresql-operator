@@ -1,4 +1,4 @@
-package io.github.onecx.k8s.db.postgresql.operator;
+package org.tkit.onecx.k8s.db.postgresql.operator;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.awaitility.Awaitility.await;
