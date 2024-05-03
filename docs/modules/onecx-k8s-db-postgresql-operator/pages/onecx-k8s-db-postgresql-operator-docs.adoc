@@ -1,0 +1,63 @@
+
+include::onecx-k8s-db-postgresql-operator-attributes.adoc[opts=optional]
+
+=== Default properties
+
+.{properties-file}
+[%collapsible%open]
+====
+[source,properties,subs=attributes+]
+----
+quarkus.datasource.db-kind=postgresql
+quarkus.datasource.jdbc.max-size=30
+quarkus.datasource.jdbc.min-size=10
+quarkus.operator-sdk.helm.enabled=true
+%prod.quarkus.datasource.jdbc.url=${ADMIN_DB_URL:jdbc:postgresql://postgresql:5432/onecx?sslmode=disable}
+%prod.quarkus.datasource.username=${ADMIN_DB_USER:onecx}
+%prod.quarkus.datasource.password=${ADMIN_DB_PWD:onecx}
+quarkus.kubernetes-client.devservices.override-kubeconfig=true
+onecx.k8s.db.postgresql.operator.host=postgresql
+----
+====
+
+=== Extensions
+
+include::onecx-k8s-db-postgresql-operator-extensions.adoc[opts=optional]
+
+=== Container
+
+{docker-registry}[Docker registry]
+
+
+=== Helm
+
+{helm-registry}[Helm registry]
+
+Default values
+
+.{helm-file}
+[source,yaml]
+----
+app:
+  name: db-postgresql-operator
+  image:
+    repository: "onecx/onecx-k8s-db-postgresql-operator"
+  db:
+    enabled: true
+    operator: false
+
+  env:
+    # See watchNamespaces
+    "QUARKUS_OPERATOR_SDK_CONTROLLERS_DATABASECONTROLLER_NAMESPACES": "JOSDK_WATCH_CURRENT"
+  envCustom:
+    - name: KUBERNETES_NAMESPACE
+      valueFrom:
+        fieldRef:
+          fieldPath: metadata.namespace
+  serviceAccount:
+    enabled: true
+
+# Values: JOSDK_WATCH_CURRENT, JOSDK_ALL_NAMESPACES or comma separated list of namespaces
+watchNamespaces: "JOSDK_WATCH_CURRENT"
+----
+

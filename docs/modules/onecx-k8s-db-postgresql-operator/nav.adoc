@@ -1,0 +1,1 @@
+* xref:onecx-k8s-db-postgresql-operator:index.adoc[Postgresql  Operator]

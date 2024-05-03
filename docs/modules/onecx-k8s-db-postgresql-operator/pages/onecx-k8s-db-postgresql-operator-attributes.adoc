@@ -1,0 +1,5 @@
+
+:docker-registry: https://github.com/onecx/onecx-k8s-db-postgresql-operator/pkgs/container/onecx-k8s-db-postgresql-operator
+:helm-registry: https://github.com/onecx/onecx-k8s-db-postgresql-operator/pkgs/container/charts%2Fonecx-k8s-db-postgresql-operator
+:properties-file: src/main/resources/application.properties
+:helm-file: src/main/helm/values.yaml
