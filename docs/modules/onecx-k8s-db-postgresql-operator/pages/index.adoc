@@ -1,0 +1,8 @@
+include::onecx-k8s-db-postgresql-operator-attributes.adoc[opts=optional]
+
+== onecx-k8s-db-postgresql-operator
+
+include::docs.adoc[opts=optional]
+
+
+include::onecx-k8s-db-postgresql-operator-docs.adoc[opts=optional]
