@@ -33,7 +33,7 @@ import io.quarkus.test.junit.TestProfile;
 @TestProfile(DatabaseSchemaNoGrantUserRoleAdminTest.CustomProfile.class)
 class DatabaseSchemaNoGrantUserRoleAdminTest {
 
-    final static Logger log = Logger.getLogger(DatabaseSchemaNoGrantUserRoleAdminTest.class);
+    static final Logger log = Logger.getLogger(DatabaseSchemaNoGrantUserRoleAdminTest.class);
 
     @Inject
     Operator operator;

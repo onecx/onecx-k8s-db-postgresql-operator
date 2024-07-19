@@ -32,7 +32,7 @@ import io.quarkus.test.junit.QuarkusTest;
 @QuarkusTest
 class DatabaseSchemaTest {
 
-    final static Logger log = Logger.getLogger(DatabaseSchemaTest.class);
+    static final Logger log = Logger.getLogger(DatabaseSchemaTest.class);
 
     @Inject
     Operator operator;
