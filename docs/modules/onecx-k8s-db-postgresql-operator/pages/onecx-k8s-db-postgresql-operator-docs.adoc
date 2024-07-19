@@ -11,6 +11,7 @@ include::onecx-k8s-db-postgresql-operator-attributes.adoc[opts=optional]
 quarkus.datasource.db-kind=postgresql
 quarkus.datasource.jdbc.max-size=30
 quarkus.datasource.jdbc.min-size=10
+quarkus.operator-sdk.crd.validate=false
 quarkus.operator-sdk.helm.enabled=true
 %prod.quarkus.datasource.jdbc.url=${ADMIN_DB_URL:jdbc:postgresql://postgresql:5432/onecx?sslmode=disable}
 %prod.quarkus.datasource.username=${ADMIN_DB_USER:onecx}
