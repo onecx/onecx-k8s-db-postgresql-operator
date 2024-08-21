@@ -46,12 +46,17 @@ app:
   db:
     enabled: true
     operator: false
-
-  env:
-    # See watchNamespaces
-    "QUARKUS_OPERATOR_SDK_CONTROLLERS_DATABASECONTROLLER_NAMESPACES": "JOSDK_WATCH_CURRENT"
   envCustom:
     - name: KUBERNETES_NAMESPACE
+      valueFrom:
+        fieldRef:
+          fieldPath: metadata.namespace
+  serviceAccount:
+    enabled: true
+
+----
+
+MESPACE
       valueFrom:
         fieldRef:
           fieldPath: metadata.namespace
