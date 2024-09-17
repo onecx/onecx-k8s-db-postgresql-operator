@@ -1,0 +1,31 @@
+:summaryTableId: onecx-k8s-db-postgresql-operator
+[.configuration-legend]
+icon:lock[title=Fixed at build time] Configuration property fixed at build time - All other configuration properties are overridable at runtime
+[.configuration-reference.searchable, cols="80,.^10,.^10"]
+|===
+
+h|[.header-title]##Configuration property##
+h|Type
+h|Default
+
+a| [[onecx-k8s-db-postgresql-operator_onecx-k8s-db-postgresql-operator-host]] [.property-path]##`onecx.k8s.db.postgresql.operator.host`##
+
+[.description]
+--
+Server host configuration.
+
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++ONECX_K8S_DB_POSTGRESQL_OPERATOR_HOST+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++ONECX_K8S_DB_POSTGRESQL_OPERATOR_HOST+++`
+endif::add-copy-button-to-env-var[]
+--
+|string
+|`postgresql`
+
+|===
+
+
+:!summaryTableId:
