@@ -4,5 +4,7 @@ include::onecx-k8s-db-postgresql-operator-attributes.adoc[opts=optional]
 
 include::docs.adoc[opts=optional]
 
+=== Configuration
+include::onecx-k8s-db-postgresql-operator.adoc[opts=optional]
 
 include::onecx-k8s-db-postgresql-operator-docs.adoc[opts=optional]

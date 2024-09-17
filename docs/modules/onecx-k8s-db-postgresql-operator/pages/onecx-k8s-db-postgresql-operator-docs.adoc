@@ -56,14 +56,3 @@ app:
 
 ----
 
-MESPACE
-      valueFrom:
-        fieldRef:
-          fieldPath: metadata.namespace
-  serviceAccount:
-    enabled: true
-
-# Values: JOSDK_WATCH_CURRENT, JOSDK_ALL_NAMESPACES or comma separated list of namespaces
-watchNamespaces: "JOSDK_WATCH_CURRENT"
-----
-
