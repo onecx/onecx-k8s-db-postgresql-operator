@@ -8,7 +8,7 @@ h|[.header-title]##Configuration property##
 h|Type
 h|Default
 
-a| [[onecx-k8s-db-postgresql-operator_onecx-k8s-db-postgresql-operator-host]] [.property-path]##`onecx.k8s.db.postgresql.operator.host`##
+a| [[onecx-k8s-db-postgresql-operator_onecx-k8s-db-postgresql-operator-host]] [.property-path]##link:#onecx-k8s-db-postgresql-operator_onecx-k8s-db-postgresql-operator-host[`onecx.k8s.db.postgresql.operator.host`]##
 
 [.description]
 --
@@ -24,6 +24,23 @@ endif::add-copy-button-to-env-var[]
 --
 |string
 |`postgresql`
+
+a| [[onecx-k8s-db-postgresql-operator_onecx-k8s-db-postgresql-operator-leader-election-lease-name]] [.property-path]##link:#onecx-k8s-db-postgresql-operator_onecx-k8s-db-postgresql-operator-leader-election-lease-name[`onecx.k8s.db.postgresql.operator.leader-election.lease-name`]##
+
+[.description]
+--
+Lease name
+
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++ONECX_K8S_DB_POSTGRESQL_OPERATOR_LEADER_ELECTION_LEASE_NAME+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++ONECX_K8S_DB_POSTGRESQL_OPERATOR_LEADER_ELECTION_LEASE_NAME+++`
+endif::add-copy-button-to-env-var[]
+--
+|string
+|`onecx-product-store-slot-operator-lease`
 
 |===
 
