@@ -18,4 +18,23 @@ public interface DatabaseConfig {
     @WithName("host")
     @WithDefault("postgresql")
     String host();
+
+    /**
+     * Leader election configuration
+     */
+    @WithName("leader-election")
+    LeaderElectionConfig leaderElectionConfig();
+
+    /**
+     * Leader election config
+     */
+    interface LeaderElectionConfig {
+
+        /**
+         * Lease name
+         */
+        @WithName("lease-name")
+        @WithDefault("onecx-product-store-slot-operator-lease")
+        String leaseName();
+    }
 }
