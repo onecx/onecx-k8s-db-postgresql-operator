@@ -34,7 +34,7 @@ public interface DatabaseConfig {
          * Lease name
          */
         @WithName("lease-name")
-        @WithDefault("onecx-product-store-slot-operator-lease")
+        @WithDefault("onecx-k8s-db-postgresql-operator-lease")
         String leaseName();
     }
 }
