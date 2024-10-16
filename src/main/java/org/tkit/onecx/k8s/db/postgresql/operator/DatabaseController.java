@@ -18,7 +18,7 @@ import io.javaoperatorsdk.operator.processing.event.source.filter.OnAddFilter;
 import io.javaoperatorsdk.operator.processing.event.source.filter.OnUpdateFilter;
 import io.javaoperatorsdk.operator.processing.event.source.informer.InformerEventSource;
 
-@ControllerConfiguration(onAddFilter = DatabaseController.AddFilter.class, onUpdateFilter = DatabaseController.UpdateFilter.class, namespaces = Constants.WATCH_CURRENT_NAMESPACE)
+@ControllerConfiguration(name = "database", onAddFilter = DatabaseController.AddFilter.class, onUpdateFilter = DatabaseController.UpdateFilter.class, namespaces = Constants.WATCH_CURRENT_NAMESPACE)
 public class DatabaseController implements Reconciler<Database>, ErrorStatusHandler<Database>,
         EventSourceInitializer<Database> {
 

@@ -40,7 +40,7 @@ Environment variable: `+++ONECX_K8S_DB_POSTGRESQL_OPERATOR_LEADER_ELECTION_LEASE
 endif::add-copy-button-to-env-var[]
 --
 |string
-|`onecx-product-store-slot-operator-lease`
+|`onecx-k8s-db-postgresql-operator-lease`
 
 |===
 
