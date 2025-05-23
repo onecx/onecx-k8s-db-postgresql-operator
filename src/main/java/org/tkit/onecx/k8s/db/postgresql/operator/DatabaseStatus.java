@@ -2,9 +2,7 @@ package org.tkit.onecx.k8s.db.postgresql.operator;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import io.javaoperatorsdk.operator.api.ObservedGenerationAwareStatus;
-
-public class DatabaseStatus extends ObservedGenerationAwareStatus {
+public class DatabaseStatus {
 
     @JsonProperty("url")
     private String url;

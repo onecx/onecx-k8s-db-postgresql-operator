@@ -9,7 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import io.fabric8.kubernetes.api.model.Secret;
-import io.javaoperatorsdk.operator.api.config.informer.InformerConfiguration;
+import io.javaoperatorsdk.operator.api.config.informer.Informer;
+import io.javaoperatorsdk.operator.api.config.informer.InformerEventSourceConfiguration;
 import io.javaoperatorsdk.operator.api.reconciler.*;
 import io.javaoperatorsdk.operator.processing.event.ResourceID;
 import io.javaoperatorsdk.operator.processing.event.source.EventSource;
@@ -18,9 +19,8 @@ import io.javaoperatorsdk.operator.processing.event.source.filter.OnAddFilter;
 import io.javaoperatorsdk.operator.processing.event.source.filter.OnUpdateFilter;
 import io.javaoperatorsdk.operator.processing.event.source.informer.InformerEventSource;
 
-@ControllerConfiguration(name = "database", onAddFilter = DatabaseController.AddFilter.class, onUpdateFilter = DatabaseController.UpdateFilter.class, namespaces = Constants.WATCH_CURRENT_NAMESPACE)
-public class DatabaseController implements Reconciler<Database>, ErrorStatusHandler<Database>,
-        EventSourceInitializer<Database> {
+@ControllerConfiguration(name = "database", informer = @Informer(name = "parameter", namespaces = Constants.WATCH_CURRENT_NAMESPACE, onAddFilter = DatabaseController.AddFilter.class, onUpdateFilter = DatabaseController.UpdateFilter.class))
+public class DatabaseController implements Reconciler<Database> {
 
     private static final Logger log = LoggerFactory.getLogger(DatabaseController.class);
 
@@ -31,7 +31,7 @@ public class DatabaseController implements Reconciler<Database>, ErrorStatusHand
     DatabaseService databaseService;
 
     @Override
-    public Map<String, EventSource> prepareEventSources(EventSourceContext<Database> context) {
+    public List<EventSource<?, Database>> prepareEventSources(EventSourceContext<Database> context) {
         final SecondaryToPrimaryMapper<Secret> webappsMatchingTomcatName = (Secret t) -> context.getPrimaryCache()
                 .list(db -> {
                     if (db.getSpec() != null) {
@@ -42,14 +42,14 @@ public class DatabaseController implements Reconciler<Database>, ErrorStatusHand
                 .map(ResourceID::fromResource)
                 .collect(Collectors.toSet());
 
-        InformerConfiguration<Secret> configuration = InformerConfiguration.from(Secret.class, context)
+        InformerEventSourceConfiguration<Secret> configuration = InformerEventSourceConfiguration
+                .from(Secret.class, Database.class)
                 .withSecondaryToPrimaryMapper(webappsMatchingTomcatName)
                 .withPrimaryToSecondaryMapper(
                         (Database primary) -> Set.of(new ResourceID(primary.getSpec().getPasswordSecrets(),
                                 primary.getMetadata().getNamespace())))
                 .build();
-        return EventSourceInitializer
-                .nameEventSources(new InformerEventSource<>(configuration, context));
+        return List.of(new InformerEventSource<>(configuration, context));
     }
 
     @Override
@@ -72,7 +72,7 @@ public class DatabaseController implements Reconciler<Database>, ErrorStatusHand
 
             updateStatusPojo(database);
             log.info("Database '{}' reconciled - updating status", database.getMetadata().getName());
-            return UpdateControl.updateStatus(database);
+            return UpdateControl.patchStatus(database);
         }
         return UpdateControl.noUpdate();
     }
@@ -118,7 +118,7 @@ public class DatabaseController implements Reconciler<Database>, ErrorStatusHand
         status.setStatus(DatabaseStatus.Status.ERROR);
         status.setMessage(message);
         resource.setStatus(status);
-        return ErrorStatusUpdateControl.updateStatus(resource);
+        return ErrorStatusUpdateControl.patchStatus(resource);
     }
 
     private void updateStatusPojo(Database database) {
