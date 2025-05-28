@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class DatabaseStatus {
 
+    @JsonProperty("observedGeneration")
+    private Long observedGeneration;
+
     @JsonProperty("url")
     private String url;
 
@@ -68,5 +71,9 @@ public class DatabaseStatus {
         UPDATED,
 
         UNDEFINED;
+    }
+
+    public Long getObservedGeneration() {
+        return observedGeneration;
     }
 }
