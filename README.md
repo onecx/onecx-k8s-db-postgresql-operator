@@ -1,2 +1,2 @@
 # onecx-k8s-db-postgresql-operator
-onecx postgresql schema operator
+OneCX PostgreSQL Schema Operator
