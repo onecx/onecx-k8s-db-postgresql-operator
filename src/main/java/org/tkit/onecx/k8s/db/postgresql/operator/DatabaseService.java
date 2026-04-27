@@ -80,6 +80,7 @@ public class DatabaseService {
     @ConfigProperty(name = "quarkus.datasource.username")
     String databaseAdmin;
 
+    @SuppressWarnings("java:S6912")
     public void update(DatabaseSpec spec, byte[] password) throws SQLException {
 
         try (Connection connection = dataSource.getConnection()) {
