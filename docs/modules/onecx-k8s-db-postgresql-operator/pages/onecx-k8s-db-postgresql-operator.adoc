@@ -7,7 +7,7 @@ h|[.header-title]##Configuration property##
 h|Type
 h|Default
 
-a| [[onecx-k8s-db-postgresql-operator_onecx-k8s-db-postgresql-operator-host]] [.property-path]##link:#onecx-k8s-db-postgresql-operator_onecx-k8s-db-postgresql-operator-host[`onecx.k8s.db.postgresql.operator.host`]##
+a| [[onecx-k8s-db-postgresql-operator_onecx-k8s-db-postgresql-operator-host]] [.property-path]##link:#onecx-k8s-db-postgresql-operator_onecx-k8s-db-postgresql-operator-host[`+++onecx.k8s.db.postgresql.operator.host+++`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++onecx.k8s.db.postgresql.operator.host+++[]
 endif::add-copy-button-to-config-props[]
@@ -26,9 +26,9 @@ Environment variable: `+++ONECX_K8S_DB_POSTGRESQL_OPERATOR_HOST+++`
 endif::add-copy-button-to-env-var[]
 --
 |string
-|`postgresql`
+|`+++postgresql+++`
 
-a| [[onecx-k8s-db-postgresql-operator_onecx-k8s-db-postgresql-operator-leader-election-lease-name]] [.property-path]##link:#onecx-k8s-db-postgresql-operator_onecx-k8s-db-postgresql-operator-leader-election-lease-name[`onecx.k8s.db.postgresql.operator.leader-election.lease-name`]##
+a| [[onecx-k8s-db-postgresql-operator_onecx-k8s-db-postgresql-operator-leader-election-lease-name]] [.property-path]##link:#onecx-k8s-db-postgresql-operator_onecx-k8s-db-postgresql-operator-leader-election-lease-name[`+++onecx.k8s.db.postgresql.operator.leader-election.lease-name+++`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++onecx.k8s.db.postgresql.operator.leader-election.lease-name+++[]
 endif::add-copy-button-to-config-props[]
@@ -47,7 +47,7 @@ Environment variable: `+++ONECX_K8S_DB_POSTGRESQL_OPERATOR_LEADER_ELECTION_LEASE
 endif::add-copy-button-to-env-var[]
 --
 |string
-|`onecx-k8s-db-postgresql-operator-lease`
+|`+++onecx-k8s-db-postgresql-operator-lease+++`
 
 |===
 
