@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory;
 
 import io.agroal.api.AgroalDataSource;
 import io.agroal.api.configuration.supplier.AgroalConnectionFactoryConfigurationSupplier;
-import io.agroal.api.configuration.supplier.AgroalConnectionPoolConfigurationSupplier;
 import io.agroal.api.configuration.supplier.AgroalDataSourceConfigurationSupplier;
 import io.agroal.api.security.NamePrincipal;
 import io.agroal.api.security.SimplePassword;
@@ -167,20 +166,28 @@ public class DatabaseService {
 
     private AgroalDataSource createUserDatasource(DatabaseSpec spec, byte[] password) throws SQLException {
 
-        AgroalDataSourceConfigurationSupplier dataSourceConfiguration = new AgroalDataSourceConfigurationSupplier();
+        var adminPool = dataSource.getConfiguration().connectionPoolConfiguration();
+        var adminFactory = adminPool.connectionFactoryConfiguration();
 
-        dataSourceConfiguration.connectionPoolConfiguration(dataSource.getConfiguration().connectionPoolConfiguration());
-        String jdbcUrl = dataSource.getConfiguration().connectionPoolConfiguration().connectionFactoryConfiguration().jdbcUrl();
-        jdbcUrl = createJdbcUrl(jdbcUrl, spec.getName());
+        AgroalDataSourceConfigurationSupplier configuration = new AgroalDataSourceConfigurationSupplier();
+        configuration.connectionPoolConfiguration(adminPool);
 
-        AgroalConnectionPoolConfigurationSupplier poolConfiguration = dataSourceConfiguration.connectionPoolConfiguration();
-        AgroalConnectionFactoryConfigurationSupplier connectionFactoryConfiguration = poolConfiguration
-                .connectionFactoryConfiguration();
+        AgroalConnectionFactoryConfigurationSupplier userFactory = new AgroalConnectionFactoryConfigurationSupplier()
+                .jdbcUrl(createJdbcUrl(adminFactory.jdbcUrl(), spec.getName()))
+                .connectionProviderClass(adminFactory.connectionProviderClass())
+                .principal(new NamePrincipal(spec.getUser()))
+                .credential(new SimplePassword(new String(password)));
 
-        connectionFactoryConfiguration.jdbcUrl(jdbcUrl);
-        connectionFactoryConfiguration.credential(new NamePrincipal(spec.getUser()));
-        connectionFactoryConfiguration.credential(new SimplePassword(new String(password)));
-        return AgroalDataSource.from(dataSourceConfiguration.get());
+        // Preserve driver settings without sharing the admin's mutable properties.
+        var jdbcProperties = adminFactory.jdbcProperties();
+        for (String name : jdbcProperties.stringPropertyNames()) {
+            userFactory.jdbcProperty(name, jdbcProperties.getProperty(name));
+        }
+
+        configuration.connectionPoolConfiguration()
+                .connectionFactoryConfiguration(userFactory);
+
+        return AgroalDataSource.from(configuration.get());
     }
 
     static String createJdbcUrl(String jdbcUrl, String database) {
