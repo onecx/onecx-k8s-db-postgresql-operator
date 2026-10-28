@@ -131,7 +131,9 @@ class DatabaseSchemaNoGrantUserRoleAdminTest {
 
         @Override
         public Map<String, String> getConfigOverrides() {
-            return Map.of("onecx.operator.db.postgresql.grant-user-role-to-admin", "false");
+            return Map.of(
+                    "onecx.operator.db.postgresql.grant-user-role-to-admin", "false",
+                    "quarkus.datasource.jdbc.additional-jdbc-properties.ApplicationName", "operator-test");
         }
     }
 }
